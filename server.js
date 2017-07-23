@@ -5,6 +5,7 @@ var localtunnel = require('localtunnel')
 
 //VARIABLES AND PARAMETERS
 const port = 5000
+var sample = require('./app/sample/index.js')
 var tunnel = localtunnel(port, {subdomain: 'levylocal'}, (err, tunnel) => {
 	if(err) {
 		console.log(err)
@@ -13,10 +14,11 @@ var tunnel = localtunnel(port, {subdomain: 'levylocal'}, (err, tunnel) => {
 	tunnel.url
 })
 
-//ROUTES
+//ROUTES AND ROUTES IMPORT
 app.get ('/', (req, res) => {
 	res.send('Hello World');
 })
+app.use('/sample', sample);
 
 //MISC
 app.listen(port);
